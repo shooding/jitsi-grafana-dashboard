@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Jitsi Videobridge Prometheus endpoint (jitsi-meet 10590+).
+  # The JVB exposes /metrics in Prometheus format on its private REST port (8080).
+  # Replace the target below with your bridge's address (scrape it from inside
+  # your network, not over the public internet).
+  - job_name: 'jvb'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['jvb.example.com:8080']
+    # If you scrape through an HTTPS reverse proxy instead, add:
+    #   scheme: https
